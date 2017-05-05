@@ -1,10 +1,10 @@
 'use strict';
 
-const server = require('../server');
-const chai = require('chai');
-const expect = require('chai').expect;
-
-chai.use(http);
+// const server = require('../server');
+// const chai = require('chai');
+// const expect = require('chai').expect;
+//
+// chai.use(http);
 
 describe('Server Module', () => {
 
