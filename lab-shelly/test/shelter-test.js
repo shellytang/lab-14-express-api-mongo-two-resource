@@ -3,6 +3,8 @@
 // const Shelter = require('../model/cat');
 // const expect = require('chai').expect;
 //
-// describe('Shelter module', () => {
-//
-// });
+describe('Shelter module', () => {
+  describe('When creating a new shelter object', () => {
+
+  });
+});
