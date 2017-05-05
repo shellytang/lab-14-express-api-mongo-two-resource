@@ -8,10 +8,10 @@ const bodyParser = require('body-parser').json();
 const app = module.exports = express();
 const router = express.Router();
 const PORT = process.env.PORT || 3000;
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/cafe-dev';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/shelter-dev';
 
 const catRoutes = require('./routes/cat-routes')(router);
-const shelterRoutes = require('.routes/shelter-routes')(router);
+const shelterRoutes = require('./routes/shelter-routes')(router);
 
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI);
