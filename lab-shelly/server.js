@@ -3,6 +3,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Promise = require('bluebird');
+const morgan = require('morgan');
 const bodyParser = require('body-parser').json();
 
 const app = module.exports = express();
@@ -19,5 +20,6 @@ mongoose.connect(MONGODB_URI);
 app.use(bodyParser);
 app.use('/api', catRoutes);
 app.use('/api', shelterRoutes);
+app.use(morgan('dev'));
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));

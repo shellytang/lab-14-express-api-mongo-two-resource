@@ -14,7 +14,6 @@ const shelterSchema = Schema({
 const Shelter = module.exports = mongoose.model('shelter', shelterSchema);
 
 Shelter.findByIdAndAddCat = function(id, cat) {
-  console.log('what is the id here?', id);
   return Shelter.findById(id)
   .then(shelter => {
     cat.shelterId = shelter._id;

@@ -1,39 +1,74 @@
 ![cf](https://i.imgur.com/7v5ASc8.png) lab 14 double resource express/mongo api
-======
 
-# To Submit this Assignment
-  * fork this repository
-  * write all of your code in a directory named `lab-` + `<your name>` **e.g.** `lab-duncan`
-  * push to your repository
-  * submit a pull request to this repository
-  * submit a link to your PR in canvas
-  * write a question and observation on canvas
+# Overview
+  * Created a HTTP Server using `express`
+  * Create a two Models:
+    * Shelter model represents animal shelter with properties 'name' and 'neighborhood' and an objectId that links to the second model for Cats. It has a one to many relationship.
+    * Cat model represents cat with properties 'name' and 'mood' and a shelterId.
+  * Data is stored in MongoDB
+  * Used the `body-parser` express middleware on `POST` and `PUT` routes
+  * Used the express `Router` to creates routes for RESTFUL CRUD operations on cat model
 
-# Build Tool Instructions
-* create a package.json that lists all dependencies and developer dependencies
- * have a start and test npm script
-* include an .eslintrc
-* include a .gitignore
- * **add the string `db` to a new line in your gitignore file so that you don't include the db directory monogd is storing its files in!**
-* include any necessary NPM scripts
-  * have a lint script for running eslint
-  * have a test script for running mocha
-  * have a default script for running the lint and mocha tasks
-* a readme with a project description and api docs
-
-# Directions
-* Create a second **Model** using `mongoose.Schema` and `mongoose.model`
- * The model can represent whatever data you choose. _e.g. note, blog post, store items_
- * It must have a relationship of many to one with the resource from from lab-13
- * one of its properties must be of type `mongoose.Schema.ObjectId` and reference an ObjectId for a resource from lab-13
-* add an array of type `mongoose.Schema.ObjectId` with a `ref` to your new-model on your model from lab-13
-* use data in your routes that return your model from lab-13
-* use the `body-parser` express middleware on `POST` and `PUT` routes
-* using the express `Router` create a route for doing **RESTFUL CRUD** operations on your second **Model**
- * thoughtfully name your routes, and be consistent
+# Installation
+  * Clone this repo and navigate to the lab-shelly directory
+  * Download the dependencies
+  * Run nodemon server in terminal
+  * Use server endpoints for requests
 
 ## Server Endpoints
-* make three routes that operate on your second model
-
-## Tests
-* test each new route for `200`, `204`, `400`, and `404` whenever applicable.
+### `/api/shelter/:shelterId/cat`
+  * `POST` request
+    * Create a cat by specifying the name and mood. You will need to include the shelter ID in your query string
+    ```
+    HTTP POST :3000/api/shelter/<shelterID>/cat name="milo" mood="hungry"
+    ```
+### `/api/cat/:id`
+  * `GET` request
+    * Get a cat by passing an id in the query string
+    ```
+    HTTP GET :3000/api/cat/12345
+    ```
+  * `DELETE` request
+    * Delete a cat by passing in an id in the query string. It should return 204 status with no content in the body
+    ```
+    HTTP DELETE :3000/api/cat/12345
+    ```
+  * `PUT` request
+    * Update a cat by passing in a valid id in the query string and specifying the new name and mood.
+    ```
+    HTTP PUT :3000/api/cat/12345 name="eva" mood="grumpy"
+    ```
+### `/api/cat`
+* `GET` request
+  * Returns all cats
+  ```
+  HTTP GET :3000/api/cat
+  ```
+### `/api/shelter`
+  * `POST` request
+    * Create a shelter by specifying the name and neighborhood.
+    ```
+    HTTP POST :3000/api/shelter name="cap hill animal clinic" neighborhood="cap hill"
+    ```
+### `/api/shelter/:id`
+  * `GET` request
+    * Get a shelter by passing an id in the query string
+    ```
+    HTTP GET :3000/api/shelter/<shelterID>
+    ```
+  * `DELETE` request
+    * Delete a shelter by passing in an id in the query string. It should return 204 status with no content in the body
+    ```
+    HTTP DELETE :3000/api/shelter/<shelterID>
+    ```
+  * `PUT` request
+    * Update a shelter by passing in a valid id in the query string and specifying the new name and neighborhood.
+    ```
+    HTTP PUT :3000/api/shelter/<shelterID> name="cap hill SPCA" neighborhood="north cap hill"
+    ```
+### `/api/shelter`
+* `GET` request
+  * Returns all shelters
+  ```
+  HTTP GET :3000/api/shelter
+  ```
